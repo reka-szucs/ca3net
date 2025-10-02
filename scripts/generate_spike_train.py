@@ -82,8 +82,8 @@ def generate_spike_train(n_neurons, place_cell_ratio, linear, ordered=True, seed
 
 if __name__ == "__main__":
 
-    n_neurons = 8000
-    place_cell_ratio = 0.5
+    n_neurons = 8000      #8000
+    place_cell_ratio = 0.7
     linear = True
 
     f_out = "spike_trains_%.1f_linear.npz"%place_cell_ratio if linear else "spike_trains_%.1f.npz"%place_cell_ratio; ordered = True
@@ -93,4 +93,5 @@ if __name__ == "__main__":
     spike_trains = refractoriness(spike_trains)  # clean spike train (based on refractory period)
 
     npzf_name = os.path.join(base_path, "files", f_out)
+    print("Saving to %s"%npzf_name)
     np.savez(npzf_name, *spike_trains)

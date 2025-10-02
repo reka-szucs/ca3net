@@ -48,7 +48,7 @@ def extract_binspikecount(lb, ub, delta_t, t_incr, spike_times, spiking_neurons,
 
 
 def calc_posterior(bin_spike_counts, tuning_curves, delta_t):
-    """
+    r"""
     Calculates posterior distribution of decoded place Pr(x|spikes) based on Davison et al. 2009
     Pr(spikes|x) = \prod_{i=1}^N \frac{(\Delta t*tau_i(x))^n_i}{n_i!} e^{-\Delta t*tau_i(x)} (* uniform prior...)
     (It actually implements it via log(likelihoods) for numerical stability)

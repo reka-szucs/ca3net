@@ -48,7 +48,7 @@ if __name__ == "__main__":
         dir_name = os.path.join(base_path, "figures", "%.2f_replay_det_%s_%.1f" % (multiplier, STDP_mode, place_cell_ratio)) if linear else None
 
         SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC = run_simulation(wmx_PC_E*multiplier, STDP_mode,
-                                                                                     cue=False, save=False, seed=seed, verbose=verbose)
+                                                                                     cue=True, save=False, seed=seed, verbose=verbose)
         results[i, :] = analyse_results(SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC, seed=seed,
                                         multiplier=multiplier, linear=linear, pklf_name=PF_pklf_name, dir_name=dir_name, TFR=TFR, save=False, verbose=verbose)
         del SM_PC; del SM_BC; del RM_PC; del RM_BC; del StateM_PC; del StateM_BC; plt.close("all")

@@ -14,10 +14,13 @@ set_device("cpp_standalone")  # speed up the simulation with generated C++ code
 import matplotlib.pyplot as plt
 from helper import load_spike_trains, save_wmx
 from plots import plot_STDP_rule, plot_wmx, plot_wmx_avg, plot_w_distr, save_selected_w, plot_weights
+from pathlib import Path
 
 
 warnings.filterwarnings("ignore")
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+# base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
+base_path = Path(__file__).parent.parent
+print("Base path: %s"%base_path)
 connection_prob_PC = 0.1
 nPCs = 8000
 
@@ -73,7 +76,7 @@ if __name__ == "__main__":
         STDP_mode = "sym"
     assert STDP_mode in ["asym", "sym"]
 
-    place_cell_ratio = 0.5
+    place_cell_ratio = 0.7
     linear = True
     f_in = "spike_trains_%.1f_linear.npz" % place_cell_ratio if linear else "spike_trains_%.1f.npz" % place_cell_ratio
     f_out = "wmx_%s_%.1f_linear.npz" % (STDP_mode, place_cell_ratio) if linear else "wmx_%s_%.1f.pkl" % (STDP_mode, place_cell_ratio)
@@ -95,11 +98,13 @@ if __name__ == "__main__":
     w_init = 1e-10  # S
     Ap *= wmax; Am *= wmax  # needed to reproduce Brian1 results
 
-    spiking_neurons, spike_times = load_spike_trains(os.path.join(base_path, "files", f_in))
+    # spiking_neurons, spike_times = load_spike_trains(os.path.join(base_path, "files", f_in))
+    spiking_neurons, spike_times = load_spike_trains(base_path / "files" / f_in)
 
     weightmx = learning(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, w_init)
     weightmx *= scale_factor  # quick and dirty additional scaling! (in an ideal world the STDP parameters should be changed to include this scaling...)
-    save_wmx(weightmx, os.path.join(base_path, "files", f_out))
+    # save_wmx(weightmx, os.path.join(base_path, "files", f_out))
+    save_wmx(weightmx, base_path / "files" / f_out)
 
     plot_wmx(weightmx, save_name=f_out[:-4])
     plot_wmx_avg(weightmx, n_pops=100, save_name="%s_avg" % f_out[:-4])
