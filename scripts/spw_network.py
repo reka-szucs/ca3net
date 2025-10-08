@@ -19,7 +19,7 @@ from detect_oscillations import analyse_rate, ripple_AC, ripple, gamma, calc_TFR
 from plots import plot_raster, plot_posterior_trajectory, plot_PSD, plot_TFR, plot_zoomed, plot_detailed, plot_LFP
 
 
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 
 # population size
 nPCs = 8000
