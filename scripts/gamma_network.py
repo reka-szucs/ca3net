@@ -16,7 +16,7 @@ from helper import load_wmx, save_vars
 from spw_network import analyse_results
 
 
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 
 # ----- base parameters are COPY-PASTED from `spw_network.py` -----
 # population size

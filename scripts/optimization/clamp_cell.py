@@ -10,7 +10,7 @@ import random as pyrandom
 from brian2 import *
 prefs.codegen.target = "numpy"
 from scipy.optimize import bisect
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-3])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-3])
 # add "scripts" directory to the path (to import modules)
 sys.path.insert(0, os.path.sep.join([base_path, "scripts"]))
 from plots import plot_SS_voltage

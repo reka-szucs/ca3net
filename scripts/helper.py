@@ -15,7 +15,7 @@ from brian2.units import *
 from poisson_proc import hom_poisson, get_tuning_curve_linear
 
 
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 nPCs = 8000
 nBCs = 150
 Erev_E = 0.0*mV

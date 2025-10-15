@@ -9,7 +9,7 @@ import os, sys, traceback, gc
 import numpy as np
 import bluepyopt as bpop
 import run_sim_ACh as sim
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-3])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-3])
 # add "scripts" directory to the path (to import modules)
 sys.path.insert(0, os.path.sep.join([base_path, "scripts"]))
 from helper import preprocess_monitors
