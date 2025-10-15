@@ -2,10 +2,12 @@
 *pyc
 *html
 .ipynb_checkpoints
-figures/
+figures/**/*.png
 files/*pkl
 files/*npz
+files/*.dump.json
 files/results/
+output/
 scripts/output/
 scripts/var/
 scripts/optimization/Mishra_2016/

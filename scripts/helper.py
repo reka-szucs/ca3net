@@ -4,6 +4,7 @@ Helper functions used here and there
 author: András Ecker, last update: 06.2022
 """
 
+import json
 import os
 from shutil import rmtree
 import pickle
@@ -18,13 +19,39 @@ from poisson_proc import hom_poisson, get_tuning_curve_linear
 base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 nPCs = 8000
 nBCs = 150
-Erev_E = 0.0*mV
-Erev_I = -70.0*mV
+Erev_E = 0.0 * mV
+Erev_I = -70.0 * mV
 len_sim = 10000  # ms
-volume_cond = 1e9*nS / 3.54e5  # 1/3.54 S/m (`_estimate_LFP()` assumes 10 um distance...)
+volume_cond = (
+    1e9 * nS / 3.54e5
+)  # 1/3.54 S/m (`_estimate_LFP()` assumes 10 um distance...)
 
 
 # ========== process Brian2 monitors ==========
+
+
+def save_results_as_json(results, f_name) -> dict:
+    def to_dict(results):
+        res_dict = {}
+        for k, v in results.items():
+            if isinstance(v, dict):
+                val = to_dict(v)
+            elif isinstance(v, np.ndarray):
+                val = v.tolist()
+            elif isinstance(v, list):
+                val = [
+                    item.tolist() if isinstance(item, np.ndarray) else item
+                    for item in v
+                ]
+            else:
+                val = v
+            res_dict[str(k)] = val
+        return res_dict
+
+    content = to_dict(results)
+    with open(f_name + ".dump.json", "w") as f:
+        json.dump(content, f, indent=2)
+
 
 def preprocess_monitors(SM, RM, calc_ISI=True):
     """
@@ -37,14 +64,16 @@ def preprocess_monitors(SM, RM, calc_ISI=True):
             ISI_hist and ISI_bin_edges: bin heights and edges of the histogram of the ISI of the population
     """
 
-    spike_times = np.array(SM.t_) * 1000.  # *1000 ms conversion
+    spike_times = np.array(SM.t_) * 1000.0  # *1000 ms conversion
     spiking_neurons = np.array(SM.i_)
     tmp_spike_times = SM.spike_trains().items()
     rate = np.array(RM.rate_).reshape(-1, 10).mean(axis=1)
 
     if calc_ISI:
-        ISIs = np.hstack([np.diff(spikes_i*1000) for i, spikes_i in tmp_spike_times])  # *1000 ms conversion
-        ISI_hist, bin_edges = np.histogram(ISIs, bins=20, range=(0,1000))
+        ISIs = np.hstack(
+            [np.diff(spikes_i * 1000) for i, spikes_i in tmp_spike_times]
+        )  # *1000 ms conversion
+        ISI_hist, bin_edges = np.histogram(ISIs, bins=20, range=(0, 1000))
 
         return spike_times, spiking_neurons, rate, ISI_hist, bin_edges
     else:
@@ -59,20 +88,20 @@ def _estimate_LFP(StateM, subset):
     :return: t, LFP: estimated LFP (in uV) and corresponding time points (in ms)
     """
 
-    t = StateM.t_ * 1000.  # *1000 ms conversion
-    LFP = np.zeros_like(t)*pA
+    t = StateM.t_ * 1000.0  # *1000 ms conversion
+    LFP = np.zeros_like(t) * pA
 
     for i in subset:
         v = StateM[i].vm
-        g_exc = StateM[i].g_ampa*nS + StateM[i].g_ampaMF*nS
-        i_exc = g_exc * (v - (Erev_E * np.ones_like(v/mV)))  # pA
-        g_inh = StateM[i].g_gaba*nS
-        i_inh = g_inh * (v - (Erev_I * np.ones_like(v/mV)))  # pA
+        g_exc = StateM[i].g_ampa * nS + StateM[i].g_ampaMF * nS
+        i_exc = g_exc * (v - (Erev_E * np.ones_like(v / mV)))  # pA
+        g_inh = StateM[i].g_gaba * nS
+        i_inh = g_inh * (v - (Erev_I * np.ones_like(v / mV)))  # pA
         LFP += -(i_exc + i_inh)  # (this is still in pA)
 
     LFP *= 1 / (4 * np.pi * volume_cond)
 
-    return t, LFP/mV
+    return t, LFP / mV
 
 
 def _avg_rate(rate, bin_, zoomed=False):
@@ -90,7 +119,7 @@ def _avg_rate(rate, bin_, zoomed=False):
     avg_rate = np.zeros_like(t1, dtype=float)
     for i, (t1_, t2_) in enumerate(zip(t1, t2)):
         avg_ = np.mean(rate[np.where((t1_ <= t) & (t < t2_))])
-        if avg_ != 0.:
+        if avg_ != 0.0:
             avg_rate[i] = avg_
 
     return avg_rate
@@ -150,7 +179,9 @@ def reorder_spiking_neurons(spiking_neurons, pklf_name_tuning_curves):
     # create a random mapping for gids which don't have place fields in the non-ordered env.
     # in order to get rid of "ghost" replays - replays in the other env. in the raster plot
     # TODO investigate why this is needed!
-    non_PFs = np.array([neuron_id for neuron_id in range(nPCs) if neuron_id not in id_map_PF])
+    non_PFs = np.array(
+        [neuron_id for neuron_id in range(nPCs) if neuron_id not in id_map_PF]
+    )
     tmp = deepcopy(non_PFs)
     np.random.shuffle(tmp)
     id_map_nonPF = {neuron_id: tmp[i] for i, neuron_id in enumerate(non_PFs)}
@@ -159,9 +190,13 @@ def reorder_spiking_neurons(spiking_neurons, pklf_name_tuning_curves):
     reordered_spiking_neurons = np.zeros_like(spiking_neurons)
     for neuron_id in np.unique(spiking_neurons):
         if neuron_id in id_map_PF:  # place cells
-            reordered_spiking_neurons[spiking_neurons == neuron_id] = id_map_PF[neuron_id]
+            reordered_spiking_neurons[spiking_neurons == neuron_id] = id_map_PF[
+                neuron_id
+            ]
         else:
-            reordered_spiking_neurons[spiking_neurons == neuron_id] = id_map_nonPF[neuron_id]
+            reordered_spiking_neurons[spiking_neurons == neuron_id] = id_map_nonPF[
+                neuron_id
+            ]
     return reordered_spiking_neurons
 
 
@@ -189,6 +224,8 @@ def save_place_fields(place_fields, pklf_name):
 
     with open(pklf_name, "wb") as f:
         pickle.dump(place_fields, f, protocol=pickle.HIGHEST_PROTOCOL)
+    results = {"place_fields": place_fields}
+    save_results_as_json(results, pklf_name)
 
 
 def save_vars(SM, RM, StateM, subset, seed, f_name="sim_vars_PC"):
@@ -206,24 +243,31 @@ def save_vars(SM, RM, StateM, subset, seed, f_name="sim_vars_PC"):
     vs, PSCs, ws = {}, {}, {}
     for i in subset:
         v = StateM[i].vm
-        vs[i] = v/mV
-        g_exc = StateM[i].g_ampa*nS
-        i_exc = -g_exc * (v - (Erev_E * np.ones_like(v/mV)))  # pA
+        vs[i] = v / mV
+        g_exc = StateM[i].g_ampa * nS
+        i_exc = -g_exc * (v - (Erev_E * np.ones_like(v / mV)))  # pA
         # separate outer (mossy fiber) input, from AMPA cond from local cells
-        g_MF = StateM[i].g_ampaMF*nS
+        g_MF = StateM[i].g_ampaMF * nS
         i_MF = -g_MF * (v - (Erev_E * np.ones_like(v / mV)))  # pA
-        g_inh = StateM[i].g_gaba*nS
-        i_inh = -g_inh * (v - (Erev_I * np.ones_like(v/mV)))  # pA
-        PSCs[i] = {"i_exc": i_exc/pA, "i_MF": i_MF/pA, "i_inh": i_inh/pA}
-        ws[i] = StateM[i].w/pA
+        g_inh = StateM[i].g_gaba * nS
+        i_inh = -g_inh * (v - (Erev_I * np.ones_like(v / mV)))  # pA
+        PSCs[i] = {"i_exc": i_exc / pA, "i_MF": i_MF / pA, "i_inh": i_inh / pA}
+        ws[i] = StateM[i].w / pA
     # (shouldn't really be saved to PSCs only but keeping it for consistency)
-    PSCs["t"] = StateM.t_ * 1000.  # *1000 ms conversion
+    PSCs["t"] = StateM.t_ * 1000.0  # *1000 ms conversion
 
-    results = {"spike_times": spike_times, "spiking_neurons": spiking_neurons, "rate": rate,
-               "vs": vs, "PSCs": PSCs, "ws": ws}
+    results = {
+        "spike_times": spike_times,
+        "spiking_neurons": spiking_neurons,
+        "rate": rate,
+        "vs": vs,
+        "PSCs": PSCs,
+        "ws": ws,
+    }
     pklf_name = os.path.join(base_path, "files", "%s_%s.pkl" % (f_name, seed))
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
 def save_PSD(f_PC, Pxx_PC, f_BC, Pxx_BC, f_LFP, Pxx_LFP, seed, f_name="PSD"):
@@ -234,10 +278,18 @@ def save_PSD(f_PC, Pxx_PC, f_BC, Pxx_BC, f_LFP, Pxx_LFP, seed, f_name="PSD"):
     :param f_name: name of saved file
     """
 
-    results = {"f_PC":f_PC, "Pxx_PC":Pxx_PC, "f_BC":f_BC, "Pxx_BC":Pxx_BC, "f_LFP":f_LFP, "Pxx_LFP":Pxx_LFP}
-    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl"%(f_name, seed))
+    results = {
+        "f_PC": f_PC,
+        "Pxx_PC": Pxx_PC,
+        "f_BC": f_BC,
+        "Pxx_BC": Pxx_BC,
+        "f_LFP": f_LFP,
+        "Pxx_LFP": Pxx_LFP,
+    }
+    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl" % (f_name, seed))
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
 def save_TFR(f_PC, coefs_PC, f_BC, coefs_BC, f_LFP, coefs_LFP, seed, f_name="TFR"):
@@ -248,10 +300,18 @@ def save_TFR(f_PC, coefs_PC, f_BC, coefs_BC, f_LFP, coefs_LFP, seed, f_name="TFR
     :param f_name: name of saved file
     """
 
-    results = {"f_PC":f_PC, "coefs_PC":coefs_PC, "f_BC":f_BC, "coefs_BC":coefs_BC, "f_LFP":f_LFP, "coefs_LFP":coefs_LFP}
-    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl"%(f_name, seed))
+    results = {
+        "f_PC": f_PC,
+        "coefs_PC": coefs_PC,
+        "f_BC": f_BC,
+        "coefs_BC": coefs_BC,
+        "f_LFP": f_LFP,
+        "coefs_LFP": coefs_LFP,
+    }
+    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl" % (f_name, seed))
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
 def save_LFP(t, LFP, seed, f_name="LFP"):
@@ -262,10 +322,11 @@ def save_LFP(t, LFP, seed, f_name="LFP"):
     :param f_name: name of saved file
     """
 
-    results = {"t":t, "LFP":LFP}
-    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl"%(f_name, seed))
+    results = {"t": t, "LFP": LFP}
+    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl" % (f_name, seed))
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
 def save_replay_analysis(replay, replay_results, seed, f_name="replay"):
@@ -277,13 +338,16 @@ def save_replay_analysis(replay, replay_results, seed, f_name="replay"):
     :param f_name: name of saved file
     """
 
-    results = {"replay":replay, "replay_results":replay_results}
-    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl"%(f_name, seed))
+    results = {"replay": replay, "replay_results": replay_results}
+    pklf_name = os.path.join(base_path, "files", "%s_%s.pkl" % (f_name, seed))
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
-def save_step_sizes(trajectories, step_sizes, avg_step_sizes, gamma_filtered_LFPs, f_name="step_sizes"):
+def save_step_sizes(
+    trajectories, step_sizes, avg_step_sizes, gamma_filtered_LFPs, f_name="step_sizes"
+):
     """
     Saves estimated trajectory, calculated step sizes and slow gamma filtered LFP
     :param trajectories: estimated (from posterior matrix) trajectories
@@ -292,14 +356,21 @@ def save_step_sizes(trajectories, step_sizes, avg_step_sizes, gamma_filtered_LFP
     :param gamma_filtered_LFPs: gamma freq filtered and sliced LFP
     """
 
-    results = {"trajectories":trajectories, "step_sizes":step_sizes,
-               "avg_step_sizes":avg_step_sizes, "gamma_filtered_LFPs":gamma_filtered_LFPs}
-    pklf_name = os.path.join(base_path, "files", "%s.pkl"%f_name)
+    results = {
+        "trajectories": trajectories,
+        "step_sizes": step_sizes,
+        "avg_step_sizes": avg_step_sizes,
+        "gamma_filtered_LFPs": gamma_filtered_LFPs,
+    }
+    pklf_name = os.path.join(base_path, "files", "%s.pkl" % f_name)
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
-def save_gavg_step_sizes(step_sizes, phases, avg_step_sizes, seeds, f_name="gavg_step_sizes"):
+def save_gavg_step_sizes(
+    step_sizes, phases, avg_step_sizes, seeds, f_name="gavg_step_sizes"
+):
     """
     Saves estimated step sizes and phases from sims with multiple seeds
     :param step_sizes: event step sizes calculated from estimated trajectories
@@ -308,11 +379,16 @@ def save_gavg_step_sizes(step_sizes, phases, avg_step_sizes, seeds, f_name="gavg
     :param seeds: seeds of different sims
     """
 
-    results = {"step_sizes":step_sizes, "phases":phases,
-               "avg_step_sizes":avg_step_sizes, "seeds":seeds}
-    pklf_name = os.path.join(base_path, "files", "%s.pkl"%f_name)
+    results = {
+        "step_sizes": step_sizes,
+        "phases": phases,
+        "avg_step_sizes": avg_step_sizes,
+        "seeds": seeds,
+    }
+    pklf_name = os.path.join(base_path, "files", "%s.pkl" % f_name)
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
+    save_results_as_json(results, pklf_name)
 
 
 def save_wmx(weightmx, npzf_name):
@@ -324,6 +400,8 @@ def save_wmx(weightmx, npzf_name):
     np.fill_diagonal(weightmx, 0.0)  # just to make sure
     sparse_weightmx = coo_matrix(weightmx)  # convert to COO
     save_npz(npzf_name, sparse_weightmx)
+    results = {"weightmx_shape": weightmx.shape}
+    save_results_as_json(results, npzf_name)
 
 
 def load_wmx(npzf_name):
@@ -374,7 +452,9 @@ def load_spike_trains(npzf_name):
     for neuron_id in range(1, nPCs):
         tmp = neuron_id * np.ones_like(spike_trains[neuron_id])
         spiking_neurons = np.concatenate((spiking_neurons, tmp), axis=0)
-        spike_times = np.concatenate((spike_times, np.asarray(spike_trains[neuron_id])), axis=0)
+        spike_times = np.concatenate(
+            (spike_times, np.asarray(spike_trains[neuron_id])), axis=0
+        )
 
     return spiking_neurons, spike_times
 
@@ -402,17 +482,21 @@ def load_tuning_curves(pklf_name, spatial_points):
     """
 
     place_fields = _load_PF_starts(pklf_name)
-    #tuning_curves = {neuron_id: get_tuning_curve_linear(spatial_points, phi_start) for neuron_id, phi_start in place_fields.items()}
+    # tuning_curves = {neuron_id: get_tuning_curve_linear(spatial_points, phi_start) for neuron_id, phi_start in place_fields.items()}
     tuning_curves = {}
     for neuron_id, phi_start in place_fields.items():
         if type(phi_start) != list:
-            tuning_curves[neuron_id] = get_tuning_curve_linear(spatial_points, phi_start)
+            tuning_curves[neuron_id] = get_tuning_curve_linear(
+                spatial_points, phi_start
+            )
         else:  # multiple envs.
             tuning_curves_ = np.zeros((len(phi_start), len(spatial_points)))
             for i, phi_start_ in enumerate(phi_start):
-                tuning_curves_[i, :] = get_tuning_curve_linear(spatial_points, phi_start_)
+                tuning_curves_[i, :] = get_tuning_curve_linear(
+                    spatial_points, phi_start_
+                )
             tuning_curve = np.sum(tuning_curves_, axis=0)
-            tuning_curve[np.where(tuning_curve > 1.)] = 1.
+            tuning_curve[np.where(tuning_curve > 1.0)] = 1.0
             tuning_curves[neuron_id] = tuning_curve
 
     return tuning_curves
@@ -429,13 +513,16 @@ def refractoriness(spike_trains, ref_per=5e-3):
     :return spike_trains: same structure, but with some spikes deleted
     """
 
-    spike_trains_updated = []; count = 0
+    spike_trains_updated = []
+    count = 0
     for single_spike_train in spike_trains:
         tmp = np.diff(single_spike_train)  # calculate ISIs
         idx = np.where(tmp < ref_per)[0] + 1
         if idx.size:
             count += idx.size
-            single_spike_train_updated = np.delete(single_spike_train, idx).tolist()  # delete spikes which are too close
+            single_spike_train_updated = np.delete(
+                single_spike_train, idx
+            ).tolist()  # delete spikes which are too close
         else:
             single_spike_train_updated = single_spike_train
         spike_trains_updated.append(single_spike_train_updated)
@@ -453,9 +540,10 @@ def _get_consecutive_sublists(list_):
     """
 
     # get upper bounds of consecutive sublists
-    ubs = [x for x,y in zip(list_, list_[1:]) if y-x != 1]
+    ubs = [x for x, y in zip(list_, list_[1:]) if y - x != 1]
 
-    cons_lists = []; lb = 0
+    cons_lists = []
+    lb = 0
     for ub in ubs:
         tmp = [x for x in list_[lb:] if x <= ub]
         cons_lists.append(tmp)
@@ -474,7 +562,7 @@ def argmin_time_arrays(time_short, time_long):
     :return: idx of long array, to get closest elements to short array
     """
 
-    return [np.argmin(np.abs(time_long-t)) for t in time_short]
+    return [np.argmin(np.abs(time_long - t)) for t in time_short]
 
 
 def generate_cue_spikes():
@@ -483,7 +571,9 @@ def generate_cue_spikes():
     spike_times = np.asarray(hom_poisson(20.0, 10, t_max=0.2, seed=12345))
     spiking_neurons = np.zeros_like(spike_times)
     for neuron_id in range(1, 100):
-        spike_times_tmp = np.asarray(hom_poisson(20.0, 10, t_max=0.2, seed=12345+neuron_id))
+        spike_times_tmp = np.asarray(
+            hom_poisson(20.0, 10, t_max=0.2, seed=12345 + neuron_id)
+        )
         spike_times = np.concatenate((spike_times, spike_times_tmp), axis=0)
         spiking_neurons_tmp = neuron_id * np.ones_like(spike_times_tmp)
         spiking_neurons = np.concatenate((spiking_neurons, spiking_neurons_tmp), axis=0)
@@ -511,7 +601,7 @@ def calc_spiketrain_ISIs():
         else:
             nplace_cell_ISIs.extend(np.diff(spike_trains[i]).tolist())
 
-    results = {"PCs":np.asarray(place_cell_ISIs), "nPCs":np.asarray(nplace_cell_ISIs)}
+    results = {"PCs": np.asarray(place_cell_ISIs), "nPCs": np.asarray(nplace_cell_ISIs)}
     pklf_name = os.path.join(base_path, "files", "spiketrain_ISIs.pkl")
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
@@ -533,9 +623,9 @@ def calc_single_cell_rates(seed):
     for i in range(nPCs):
         spikes = spike_times[spiking_neurons == i]
         if i in PFs:
-            place_cell_rates.append(len(spikes)/(len_sim/1000.))
+            place_cell_rates.append(len(spikes) / (len_sim / 1000.0))
         else:
-            nplace_cell_rates.append(len(spikes)/(len_sim/1000.))
+            nplace_cell_rates.append(len(spikes) / (len_sim / 1000.0))
 
     pklf_name = os.path.join(base_path, "files", "sim_vars_BC_%s.pkl" % seed)
     spike_times, spiking_neurons, _ = load_spikes(pklf_name)
@@ -543,9 +633,13 @@ def calc_single_cell_rates(seed):
     BC_rates = []
     for i in range(nBCs):
         spikes = spike_times[spiking_neurons == i]
-        BC_rates.append(len(spikes)/(len_sim/1000.))
+        BC_rates.append(len(spikes) / (len_sim / 1000.0))
 
-    results = {"PCs": np.asarray(place_cell_rates), "nPCs": np.asarray(nplace_cell_rates), "BCs": np.asarray(BC_rates)}
+    results = {
+        "PCs": np.asarray(place_cell_rates),
+        "nPCs": np.asarray(nplace_cell_rates),
+        "BCs": np.asarray(BC_rates),
+    }
     pklf_name = os.path.join(base_path, "files", "single_cell_rates_%s.pkl" % seed)
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
@@ -559,7 +653,7 @@ def calc_ISIs(seed):
     with open(pklf_name, "rb") as f:
         PFs = pickle.load(f, encoding="latin1")
 
-    pklf_name = os.path.join(base_path, "files", "sim_vars_PC_%s.pkl"%seed)
+    pklf_name = os.path.join(base_path, "files", "sim_vars_PC_%s.pkl" % seed)
     spike_times, spiking_neurons, _ = load_spikes(pklf_name)
 
     place_cell_ISIs = []
@@ -572,7 +666,7 @@ def calc_ISIs(seed):
         else:
             nplace_cell_ISIs.extend(np.diff(spikes).tolist())
 
-    pklf_name = os.path.join(base_path, "files", "sim_vars_BC_%s.pkl"%seed)
+    pklf_name = os.path.join(base_path, "files", "sim_vars_BC_%s.pkl" % seed)
     spike_times, spiking_neurons, _ = load_spikes(pklf_name)
 
     BC_ISIs = []
@@ -581,8 +675,12 @@ def calc_ISIs(seed):
         spikes = spike_times[idx]
         BC_ISIs.extend(np.diff(spikes).tolist())
 
-    results = {"PCs":np.asarray(place_cell_ISIs), "nPCs":np.asarray(nplace_cell_ISIs), "BCs":np.asarray(BC_ISIs)}
-    pklf_name = os.path.join(base_path, "files", "ISIs_%s.pkl"%seed)
+    results = {
+        "PCs": np.asarray(place_cell_ISIs),
+        "nPCs": np.asarray(nplace_cell_ISIs),
+        "BCs": np.asarray(BC_ISIs),
+    }
+    pklf_name = os.path.join(base_path, "files", "ISIs_%s.pkl" % seed)
     with open(pklf_name, "wb") as f:
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -590,12 +688,14 @@ def calc_ISIs(seed):
 def calc_LFP_TFR(seed):
     """Calculates TFR of the full LFP (not sliced, not downsampled)"""
 
-    pklf_name = os.path.join(base_path, "files", "LFP_%s.pkl"%seed)
+    pklf_name = os.path.join(base_path, "files", "LFP_%s.pkl" % seed)
     t, LFP = load_LFP(pklf_name)
-    fs = 10000.
+    fs = 10000.0
 
-    scales = np.concatenate((np.linspace(25, 80, 250), np.linspace(80, 300, 250)[1:]))  # 27-325 Hz  pywt.scale2frequency("morl", scale) / (1/fs)
-    coefs, freqs = pywt.cwt(LFP, scales, "morl", 1/fs)
+    scales = np.concatenate(
+        (np.linspace(25, 80, 250), np.linspace(80, 300, 250)[1:])
+    )  # 27-325 Hz  pywt.scale2frequency("morl", scale) / (1/fs)
+    coefs, freqs = pywt.cwt(LFP, scales, "morl", 1 / fs)
 
     results = {"coefs": coefs, "freqs": freqs}
     pklf_name = os.path.join(base_path, "files", "LFP_TFR_%s.pkl" % seed)
@@ -603,7 +703,7 @@ def calc_LFP_TFR(seed):
         pickle.dump(results, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 #    calc_spiketrain_ISIs()
 #    seed = 12345
 #    calc_single_cell_rates(seed)

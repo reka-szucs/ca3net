@@ -13,7 +13,7 @@ from helper import _avg_rate, _estimate_LFP
 
 
 def _autocorrelation(time_series):
-    """
+    r"""
     Computes the autocorrelation of a time series
     R(\tau) = \frac{E[(X_t - \mu)(X_{t+\tau} - \mu)]}{\sigma^2}
     :param time_series: time series to analyse
