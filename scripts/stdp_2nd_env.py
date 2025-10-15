@@ -16,7 +16,7 @@ from plots import plot_STDP_rule, plot_wmx, plot_wmx_avg, plot_w_distr, save_sel
 
 
 warnings.filterwarnings("ignore")
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 
 nPCs = 8000  # #{neurons}
 

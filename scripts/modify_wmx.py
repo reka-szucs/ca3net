@@ -11,7 +11,7 @@ from plots import plot_wmx, plot_wmx_avg, plot_w_distr, save_selected_w, plot_we
 from helper import load_wmx, save_wmx
 
 
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 nPCs = 8000
 
 

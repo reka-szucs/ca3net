@@ -12,7 +12,7 @@ from helper import load_wmx
 from spw_network import run_simulation, analyse_results
 
 
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 header = "multiplier, replay, PC rate, BC rate, " \
          "PC ripple freq, PC ripple power, BC ripple freq, BC ripple power, LFP ripple freq, LFP ripple power, " \
          "PC gamma freq, PC gamma power, BC gamma freq, BC gamma power, LFP gamma freq, LFP gamma power, " \

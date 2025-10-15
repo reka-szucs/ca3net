@@ -14,7 +14,7 @@ from helper import load_spikes, load_LFP, argmin_time_arrays, save_step_sizes, s
 from plots import plot_step_sizes, plot_step_size_distr, plot_step_size_phases
 
 
-base_path = os.path.sep.join(os.path.abspath("__file__").split(os.path.sep)[:-2])
+base_path = os.path.sep.join(os.path.abspath(__file__).split(os.path.sep)[:-2])
 
 len_sim = 10000  # ms
 
