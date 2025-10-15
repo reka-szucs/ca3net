@@ -7,7 +7,6 @@ To run:
     git clone https://github.com/KaliLab/ca3net.git
     cd ca3net
     pip3 install -r requirements.txt
-    mkdir figures
     cd scripts
     python generate_spike_train.py  # generate CA3 like spike trains (as exploration of a maze)
     python stdp.py  # learns the recurrent weight (via STDP, based on the spiketrain)
