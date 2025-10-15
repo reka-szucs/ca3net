@@ -263,9 +263,12 @@ def run_simulation(wmx_PC_E, STDP_mode, cue, save, seed, verbose=True):
         run(10000 * ms)
 
     if save:
-        save_vars(SM_PC, RM_PC, StateM_PC, selection, seed)
+        save_vars(SM_PC, RM_PC, StateM_PC, selection, seed)  #
 
     return SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC
+    
+
+
 
 
 def analyse_results(
@@ -516,13 +519,21 @@ if __name__ == "__main__":
         STDP_mode = "sym"
     assert STDP_mode in ["sym", "asym"]
     linear = True
+<<<<<<< Updated upstream
     cue = False
+=======
+    cue = True
+>>>>>>> Stashed changes
     place_cell_ratio = 0.5
     seed = 12345
 
     analyse_replay = True
     TFR = False
     save = True
+<<<<<<< Updated upstream
+=======
+    save_spiketrain = True
+>>>>>>> Stashed changes
     verbose = True
 
     f_in = (
@@ -546,6 +557,7 @@ if __name__ == "__main__":
     )
 
     wmx_PC_E = load_wmx(os.path.join(base_path, "files", f_in))
+<<<<<<< Updated upstream
     SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC = run_simulation(
         wmx_PC_E, STDP_mode, cue=cue, save=save, seed=seed, verbose=verbose
     )
@@ -567,4 +579,20 @@ if __name__ == "__main__":
         save=save,
         verbose=verbose,
     )
+=======
+    SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC = run_simulation(wmx_PC_E, STDP_mode, cue=cue,
+                                                                                 save=save, seed=seed, verbose=verbose)
+    _ = analyse_results(SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC, seed=seed,
+                        multiplier=1, linear=linear, pklf_name=PF_pklf_name, dir_name=dir_name,
+                        analyse_replay=analyse_replay, TFR=TFR, save=save, verbose=verbose)
+
+    # Extract spike data from pyramidal cells
+    spiking_neurons = SM_PC.i[:]
+    spike_times = SM_PC.t[:] / second  # convert to seconds if needed
+
+    # Save to .npz file
+    np.savez(os.path.join(base_path, "files", "spw_PC_spikes.npz"),
+             spiking_neurons=spiking_neurons, spike_times=spike_times)
+
+>>>>>>> Stashed changes
     plt.show()
