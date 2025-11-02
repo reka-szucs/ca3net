@@ -1,0 +1,49 @@
+all: main.exe
+
+clean:
+    del *.obj /s
+    del *.exe /s
+    del sourcefiles.txt
+
+code_objects\before_run_synapses_post_push_spikes.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/before_run_synapses_post_push_spikes.cpp /Focode_objects\before_run_synapses_post_push_spikes.obj 
+    
+code_objects\before_run_synapses_pre_push_spikes.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/before_run_synapses_pre_push_spikes.cpp /Focode_objects\before_run_synapses_pre_push_spikes.obj 
+    
+code_objects\spikegeneratorgroup_codeobject.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/spikegeneratorgroup_codeobject.cpp /Focode_objects\spikegeneratorgroup_codeobject.obj 
+    
+code_objects\synapses_post_codeobject.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_post_codeobject.cpp /Focode_objects\synapses_post_codeobject.obj 
+    
+code_objects\synapses_post_push_spikes.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_post_push_spikes.cpp /Focode_objects\synapses_post_push_spikes.obj 
+    
+code_objects\synapses_pre_codeobject.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_pre_codeobject.cpp /Focode_objects\synapses_pre_codeobject.obj 
+    
+code_objects\synapses_pre_push_spikes.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_pre_push_spikes.cpp /Focode_objects\synapses_pre_push_spikes.obj 
+    
+code_objects\synapses_synapses_create_generator_codeobject.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_synapses_create_generator_codeobject.cpp /Focode_objects\synapses_synapses_create_generator_codeobject.obj 
+    
+main.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  main.cpp /Fomain.obj 
+    
+network.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  network.cpp /Fonetwork.obj 
+    
+objects.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  objects.cpp /Foobjects.obj 
+    
+run.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  run.cpp /Forun.obj 
+    
+synapses_classes.obj: win_makefile
+    cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  synapses_classes.cpp /Fosynapses_classes.obj 
+    
+
+main.exe: code_objects\before_run_synapses_post_push_spikes.obj code_objects\before_run_synapses_pre_push_spikes.obj code_objects\spikegeneratorgroup_codeobject.obj code_objects\synapses_post_codeobject.obj code_objects\synapses_post_push_spikes.obj code_objects\synapses_pre_codeobject.obj code_objects\synapses_pre_push_spikes.obj code_objects\synapses_synapses_create_generator_codeobject.obj main.obj network.obj objects.obj run.obj synapses_classes.obj  win_makefile sourcefiles.txt
+    link @sourcefiles.txt /LIBPATH:"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\lib" advapi32.lib /LIBPATH:. /OUT:main.exe 

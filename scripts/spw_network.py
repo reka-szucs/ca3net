@@ -207,6 +207,47 @@ def run_simulation(wmx_PC_E, STDP_mode, cue, save, seed, verbose=True):
     return SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC
 
 
+def save_spw_spike_trains_npz(spike_monitor, filename="spw_spiketrains_out.npz", n_neurons=None):
+    """
+    Save spike trains from a Brian2 SpikeMonitor to a .npz file in base_path/files.
+    Each neuron's spike times are stored as a separate array (in seconds).
+    :param spike_monitor: Brian2 SpikeMonitor
+    :param filename: output filename (default "spw_spiketrains_out.npz")
+    :param n_neurons: number of neurons to include (defaults to global nPCs or inferred)
+    """
+    import numpy as _np
+    import os as _os
+
+    # infer number of neurons if not provided
+    if n_neurons is None:
+        try:
+            n_neurons = globals().get("nPCs", None)
+            if n_neurons is None:
+                # fallback: infer from spike monitor indices
+                n_neurons = int(_np.max(spike_monitor.i)) + 1 if len(spike_monitor.i) > 0 else 0
+        except Exception:
+            n_neurons = 0
+
+    # get per-neuron spike arrays (in seconds)
+    spike_map = spike_monitor.spike_trains()
+    spike_trains = []
+    for i in range(n_neurons):
+        times = spike_map.get(i, _np.array([]))
+        # ensure a NumPy array of floats (seconds)
+        try:
+            times_s = _np.asarray(times / second)
+        except Exception:
+            times_s = _np.asarray(times).astype(float)
+        spike_trains.append(times_s)
+
+    out_dir = _os.path.join(base_path, "files")
+    _os.makedirs(out_dir, exist_ok=True)
+    out_path = _os.path.join(out_dir, filename)
+
+    _np.savez(out_path, *spike_trains)
+    print("Saved spike trains to:", out_path)
+
+
 def analyse_results(SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC, seed,
                     multiplier, linear, pklf_name, dir_name,
                     analyse_replay=True, TFR=True, save=True, verbose=True):
@@ -340,6 +381,7 @@ if __name__ == "__main__":
     place_cell_ratio = 0.5
     seed = 12345
 
+
     analyse_replay = True
     TFR = False
     save = False
@@ -352,6 +394,8 @@ if __name__ == "__main__":
     wmx_PC_E = load_wmx(os.path.join(base_path, "files", f_in))
     SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC = run_simulation(wmx_PC_E, STDP_mode, cue=cue,
                                                                                  save=save, seed=seed, verbose=verbose)
+    
+    save_spw_spike_trains_npz(SM_PC, filename="spw_spiketrains_out.npz", n_neurons=nPCs)
     _ = analyse_results(SM_PC, SM_BC, RM_PC, RM_BC, selection, StateM_PC, StateM_BC, seed=seed,
                         multiplier=1, linear=linear, pklf_name=PF_pklf_name, dir_name=dir_name,
                         analyse_replay=analyse_replay, TFR=TFR, save=save, verbose=verbose)

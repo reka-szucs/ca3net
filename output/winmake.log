@@ -1,0 +1,184 @@
+MSVC environment: 
+allusersprofile=C:\ProgramData
+appdata=C:\Users\reka\AppData\Roaming
+bundled_debugpy_path=c:\Users\reka\.vscode\extensions\ms-python.debugpy-2025.14.1-win32-x64\bundled\libs\debugpy
+chrome_crashpad_pipe_name=\\.\pipe\crashpad_19428_HRUZIKWIAWCNOYBY
+colorterm=truecolor
+commandprompttype=Cross
+commonprogramfiles=C:\Program Files\Common Files
+commonprogramfiles(x86)=C:\Program Files (x86)\Common Files
+commonprogramw6432=C:\Program Files\Common Files
+computername=DESKTOP-1SVFFQV
+comspec=C:\WINDOWS\system32\cmd.exe
+devenvdir=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\
+driverdata=C:\Windows\System32\Drivers\DriverData
+efc_9676_1592913036=1
+extensionsdkdir=C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+external_include=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt
+fps_browser_app_profile_string=Internet Explorer
+fps_browser_user_profile_string=Default
+framework40version=v4.0
+frameworkdir=C:\Windows\Microsoft.NET\Framework\
+frameworkdir32=C:\Windows\Microsoft.NET\Framework\
+frameworkdir64=C:\Windows\Microsoft.NET\Framework64\
+frameworkversion=v4.0.30319
+frameworkversion32=v4.0.30319
+frameworkversion64=v4.0.30319
+git_askpass=c:\Users\reka\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\git\dist\askpass.sh
+homedrive=C:
+homepath=\Users\reka
+include=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt
+ivirootdir32=C:\Program Files (x86)\IVI Foundation\IVI\
+ivirootdir64=C:\Program Files\IVI Foundation\IVI\
+lang=en_US.UTF-8
+lib=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\lib\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.22621.0\\um\x64
+libpath=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.22621.0;C:\Windows\Microsoft.NET\Framework\v4.0.30319
+localappdata=C:\Users\reka\AppData\Local
+logonserver=\\DESKTOP-1SVFFQV
+moz_plugin_path=C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\plugins\
+nidaqmxswitchdir=C:\Program Files (x86)\National Instruments\NI-DAQ\Switch\
+niextccompilersupp=C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\
+number_of_processors=6
+onedrive=C:\Users\reka\OneDrive
+onedriveconsumer=C:\Users\reka\OneDrive
+original_xdg_current_desktop=undefined
+os=Windows_NT
+path=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX86\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX86\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\\x86;C:\Program Files (x86)\Windows Kits\10\bin\\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2023a\bin;C:\Program Files\MATLAB\R2022b\runtime\win64;C:\Program Files\MATLAB\R2022b\bin;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\;C:\Program Files\IVI Foundation\VISA\Win64\Bin\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files\dotnet\;C:\Program Files (x86)\IVI Foundation\IVI\Bin\;C:\Program Files\IVI Foundation\IVI\Bin\;C:\Program Files (x86)\National Instruments\Shared\LabVIEW CLI;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Jalview\bin;C:\Program Files\Git\cmd;C:\Users\reka\AppData\Local\Microsoft\WindowsApps;C:\Users\reka\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\reka\.vscode\extensions\ms-python.debugpy-2025.14.1-win32-x64\bundled\scripts\noConfigScripts;c:\Users\reka\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg
+pathext=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+platform=x64
+processor_architecture=AMD64
+processor_identifier=AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
+processor_level=23
+processor_revision=6001
+programdata=C:\ProgramData
+programfiles=C:\Program Files
+programfiles(x86)=C:\Program Files (x86)
+programw6432=C:\Program Files
+prompt=$P$G
+psmodulepath=C:\Users\reka\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+public=C:\Users\Public
+pydevd_disable_file_validation=1
+pythonioencoding=UTF-8
+pythonstartup=c:\Users\reka\AppData\Roaming\Code\User\workspaceStorage\ff58346d7f05a9c044fcb812c5ea15b1\ms-python.python\pythonrc.py
+pythonunbuffered=1
+pythonuserbase=C:\Users\reka\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages
+python_basic_repl=1
+sessionname=Console
+systemdrive=C:
+systemroot=C:\WINDOWS
+temp=C:\Users\reka\AppData\Local\Temp
+term_program=vscode
+term_program_version=1.105.1
+tmp=C:\Users\reka\AppData\Local\Temp
+ucrtversion=10.0.22621.0
+universalcrtsdkdir=C:\Program Files (x86)\Windows Kits\10\
+userdomain=DESKTOP-1SVFFQV
+userdomain_roamingprofile=DESKTOP-1SVFFQV
+username=reka
+userprofile=C:\Users\reka
+vcideinstalldir=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\
+vcinstalldir=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\
+vcpkg_root=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg
+vctoolsinstalldir=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\
+vctoolsredistdir=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.40.33807\
+vctoolsversion=14.40.33807
+visualstudioversion=17.0
+vs170comntools=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\
+vscmd_arg_app_plat=Desktop
+vscmd_arg_host_arch=x86
+vscmd_arg_tgt_arch=x64
+vscmd_ver=17.10.3
+vscode_debugpy_adapter_endpoints=c:\Users\reka\.vscode\extensions\ms-python.debugpy-2025.14.1-win32-x64\.noConfigDebugAdapterEndpoints\endpoint-0f8822a312c084be.txt
+vscode_git_askpass_main=c:\Users\reka\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\git\dist\askpass-main.js
+vscode_git_askpass_node=C:\Users\reka\AppData\Local\Programs\Microsoft VS Code\Code.exe
+vscode_git_ipc_handle=\\.\pipe\vscode-git-0e33f69c7a-sock
+vscode_injection=1
+vscode_python_autoactivate_guard=1
+vsinstalldir=C:\Program Files\Microsoft Visual Studio\2022\Community\
+vxipnppath=C:\Program Files (x86)\IVI Foundation\VISA\
+vxipnppath64=C:\Program Files\IVI Foundation\VISA\
+windir=C:\WINDOWS
+windowslibpath=C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.22621.0
+windowssdkbinpath=C:\Program Files (x86)\Windows Kits\10\bin\
+windowssdkdir=C:\Program Files (x86)\Windows Kits\10\
+windowssdklibversion=10.0.22621.0\
+windowssdkverbinpath=C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\
+windowssdkversion=10.0.22621.0\
+__dotnet_add_32bit=1
+__dotnet_add_64bit=1
+__dotnet_preferred_bitness=32
+__vscmd_preinit_path=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2023a\bin;C:\Program Files\MATLAB\R2022b\runtime\win64;C:\Program Files\MATLAB\R2022b\bin;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\;C:\Program Files\IVI Foundation\VISA\Win64\Bin\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files\dotnet\;C:\Program Files (x86)\IVI Foundation\IVI\Bin\;C:\Program Files\IVI Foundation\IVI\Bin\;C:\Program Files (x86)\National Instruments\Shared\LabVIEW CLI;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Jalview\bin;C:\Program Files\Git\cmd;C:\Users\reka\AppData\Local\Microsoft\WindowsApps;C:\Users\reka\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\reka\.vscode\extensions\ms-python.debugpy-2025.14.1-win32-x64\bundled\scripts\noConfigScripts;c:\Users\reka\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand
+
+Microsoft (R) Program Maintenance Utility Version 14.40.33811.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/before_run_synapses_post_push_spikes.cpp /Focode_objects\before_run_synapses_post_push_spikes.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+before_run_synapses_post_push_spikes.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/before_run_synapses_pre_push_spikes.cpp /Focode_objects\before_run_synapses_pre_push_spikes.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+before_run_synapses_pre_push_spikes.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/spikegeneratorgroup_codeobject.cpp /Focode_objects\spikegeneratorgroup_codeobject.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+spikegeneratorgroup_codeobject.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_post_codeobject.cpp /Focode_objects\synapses_post_codeobject.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+synapses_post_codeobject.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_post_push_spikes.cpp /Focode_objects\synapses_post_push_spikes.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+synapses_post_push_spikes.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_pre_codeobject.cpp /Focode_objects\synapses_pre_codeobject.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+synapses_pre_codeobject.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_pre_push_spikes.cpp /Focode_objects\synapses_pre_push_spikes.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+synapses_pre_push_spikes.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_synapses_create_generator_codeobject.cpp /Focode_objects\synapses_synapses_create_generator_codeobject.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+synapses_synapses_create_generator_codeobject.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  main.cpp /Fomain.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+main.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  network.cpp /Fonetwork.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+network.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  objects.cpp /Foobjects.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+objects.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  run.cpp /Forun.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+run.cpp
+	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  synapses_classes.cpp /Fosynapses_classes.obj
+Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+synapses_classes.cpp
+	link @sourcefiles.txt /LIBPATH:"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\lib" advapi32.lib /LIBPATH:. /OUT:main.exe
+Microsoft (R) Incremental Linker Version 14.40.33811.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+code_objects\before_run_synapses_post_push_spikes code_objects\before_run_synapses_pre_push_spikes code_objects\spikegeneratorgroup_codeobject code_objects\synapses_post_codeobject code_objects\synapses_post_push_spikes code_objects\synapses_pre_codeobject code_objects\synapses_pre_push_spikes code_objects\synapses_synapses_create_generator_codeobject main network objects run synapses_classes 
