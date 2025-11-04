@@ -5,6 +5,7 @@
 figures/
 files/*pkl
 files/*npz
+files/*.json
 files/results/
 scripts/output/
 scripts/var/
