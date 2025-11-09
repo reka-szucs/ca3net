@@ -2,7 +2,7 @@ MSVC environment:
 allusersprofile=C:\ProgramData
 appdata=C:\Users\reka\AppData\Roaming
 bundled_debugpy_path=c:\Users\reka\.vscode\extensions\ms-python.debugpy-2025.14.1-win32-x64\bundled\libs\debugpy
-chrome_crashpad_pipe_name=\\.\pipe\crashpad_19428_HRUZIKWIAWCNOYBY
+chrome_crashpad_pipe_name=\\.\pipe\crashpad_12376_HCXYGDNUKUNKIVTQ
 colorterm=truecolor
 commandprompttype=Cross
 commonprogramfiles=C:\Program Files\Common Files
@@ -12,7 +12,7 @@ computername=DESKTOP-1SVFFQV
 comspec=C:\WINDOWS\system32\cmd.exe
 devenvdir=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\
 driverdata=C:\Windows\System32\Drivers\DriverData
-efc_9676_1592913036=1
+efc_9228_1592913036=1
 extensionsdkdir=C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
 external_include=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.22621.0\\cppwinrt
 fps_browser_app_profile_string=Internet Explorer
@@ -59,7 +59,7 @@ psmodulepath=C:\Users\reka\OneDrive\Documents\WindowsPowerShell\Modules;C:\Progr
 public=C:\Users\Public
 pydevd_disable_file_validation=1
 pythonioencoding=UTF-8
-pythonstartup=c:\Users\reka\AppData\Roaming\Code\User\workspaceStorage\ff58346d7f05a9c044fcb812c5ea15b1\ms-python.python\pythonrc.py
+pythonstartup=c:\Users\reka\AppData\Roaming\Code\User\workspaceStorage\2378d592bba76a1baea6eff89a3a7333\ms-python.python\pythonrc.py
 pythonunbuffered=1
 pythonuserbase=C:\Users\reka\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages
 python_basic_repl=1
@@ -91,7 +91,7 @@ vscmd_ver=17.10.3
 vscode_debugpy_adapter_endpoints=c:\Users\reka\.vscode\extensions\ms-python.debugpy-2025.14.1-win32-x64\.noConfigDebugAdapterEndpoints\endpoint-0f8822a312c084be.txt
 vscode_git_askpass_main=c:\Users\reka\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\git\dist\askpass-main.js
 vscode_git_askpass_node=C:\Users\reka\AppData\Local\Programs\Microsoft VS Code\Code.exe
-vscode_git_ipc_handle=\\.\pipe\vscode-git-0e33f69c7a-sock
+vscode_git_ipc_handle=\\.\pipe\vscode-git-b24b85d993-sock
 vscode_injection=1
 vscode_python_autoactivate_guard=1
 vsinstalldir=C:\Program Files\Microsoft Visual Studio\2022\Community\
@@ -112,73 +112,3 @@ __vscmd_preinit_path=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\
 Microsoft (R) Program Maintenance Utility Version 14.40.33811.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/before_run_synapses_post_push_spikes.cpp /Focode_objects\before_run_synapses_post_push_spikes.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-before_run_synapses_post_push_spikes.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/before_run_synapses_pre_push_spikes.cpp /Focode_objects\before_run_synapses_pre_push_spikes.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-before_run_synapses_pre_push_spikes.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/spikegeneratorgroup_codeobject.cpp /Focode_objects\spikegeneratorgroup_codeobject.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-spikegeneratorgroup_codeobject.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_post_codeobject.cpp /Focode_objects\synapses_post_codeobject.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-synapses_post_codeobject.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_post_push_spikes.cpp /Focode_objects\synapses_post_push_spikes.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-synapses_post_push_spikes.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_pre_codeobject.cpp /Focode_objects\synapses_pre_codeobject.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-synapses_pre_codeobject.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_pre_push_spikes.cpp /Focode_objects\synapses_pre_push_spikes.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-synapses_pre_push_spikes.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  code_objects/synapses_synapses_create_generator_codeobject.cpp /Focode_objects\synapses_synapses_create_generator_codeobject.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-synapses_synapses_create_generator_codeobject.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  main.cpp /Fomain.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-main.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  network.cpp /Fonetwork.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-network.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  objects.cpp /Foobjects.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-objects.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  run.cpp /Forun.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-run.cpp
-	cl /c /EHsc /I. -I"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\include" /Ox /w /arch:AVX2 /MP  synapses_classes.cpp /Fosynapses_classes.obj
-Microsoft (R) C/C++ Optimizing Compiler Version 19.40.33811 for x64
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-synapses_classes.cpp
-	link @sourcefiles.txt /LIBPATH:"C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Library\lib" advapi32.lib /LIBPATH:. /OUT:main.exe
-Microsoft (R) Incremental Linker Version 14.40.33811.0
-Copyright (C) Microsoft Corporation.  All rights reserved.
-
-code_objects\before_run_synapses_post_push_spikes code_objects\before_run_synapses_pre_push_spikes code_objects\spikegeneratorgroup_codeobject code_objects\synapses_post_codeobject code_objects\synapses_post_push_spikes code_objects\synapses_pre_codeobject code_objects\synapses_pre_push_spikes code_objects\synapses_synapses_create_generator_codeobject main network objects run synapses_classes 

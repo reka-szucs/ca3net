@@ -207,13 +207,13 @@ std::vector<double> _dynamic_array_synapses_w;
 
 /////////////// static arrays /////////////
 int32_t * _static_array__dynamic_array_spikegeneratorgroup__timebins;
-const int _num__static_array__dynamic_array_spikegeneratorgroup__timebins = 744174;
+const int _num__static_array__dynamic_array_spikegeneratorgroup__timebins = 155437;
 double * _static_array__dynamic_array_spikegeneratorgroup_neuron_index;
-const int _num__static_array__dynamic_array_spikegeneratorgroup_neuron_index = 744174;
+const int _num__static_array__dynamic_array_spikegeneratorgroup_neuron_index = 155437;
 int64_t * _static_array__dynamic_array_spikegeneratorgroup_spike_number;
-const int _num__static_array__dynamic_array_spikegeneratorgroup_spike_number = 744174;
+const int _num__static_array__dynamic_array_spikegeneratorgroup_spike_number = 155437;
 double * _static_array__dynamic_array_spikegeneratorgroup_spike_time;
-const int _num__static_array__dynamic_array_spikegeneratorgroup_spike_time = 744174;
+const int _num__static_array__dynamic_array_spikegeneratorgroup_spike_time = 155437;
 
 //////////////// synapses /////////////////
 // synapses
@@ -271,9 +271,9 @@ void _init_arrays()
     
     for(int i=0; i<1; i++) _array_synapses_N[i] = 0;
 
-    _dynamic_array_spikegeneratorgroup__timebins.resize(744174);
+    _dynamic_array_spikegeneratorgroup__timebins.resize(155437);
     
-    for(int i=0; i<744174; i++) _dynamic_array_spikegeneratorgroup__timebins[i] = 0;
+    for(int i=0; i<155437; i++) _dynamic_array_spikegeneratorgroup__timebins[i] = 0;
 
 
     // Arrays initialized to an "arange"
@@ -283,10 +283,10 @@ void _init_arrays()
 
 
     // static arrays
-    _static_array__dynamic_array_spikegeneratorgroup__timebins = new int32_t[744174];
-    _static_array__dynamic_array_spikegeneratorgroup_neuron_index = new double[744174];
-    _static_array__dynamic_array_spikegeneratorgroup_spike_number = new int64_t[744174];
-    _static_array__dynamic_array_spikegeneratorgroup_spike_time = new double[744174];
+    _static_array__dynamic_array_spikegeneratorgroup__timebins = new int32_t[155437];
+    _static_array__dynamic_array_spikegeneratorgroup_neuron_index = new double[155437];
+    _static_array__dynamic_array_spikegeneratorgroup_spike_number = new int64_t[155437];
+    _static_array__dynamic_array_spikegeneratorgroup_spike_time = new double[155437];
 
     // Random number generator states
     std::random_device rd;
@@ -302,7 +302,7 @@ void _load_arrays()
     f_static_array__dynamic_array_spikegeneratorgroup__timebins.open("static_arrays/_static_array__dynamic_array_spikegeneratorgroup__timebins", ios::in | ios::binary);
     if(f_static_array__dynamic_array_spikegeneratorgroup__timebins.is_open())
     {
-        f_static_array__dynamic_array_spikegeneratorgroup__timebins.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup__timebins), 744174*sizeof(int32_t));
+        f_static_array__dynamic_array_spikegeneratorgroup__timebins.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup__timebins), 155437*sizeof(int32_t));
     } else
     {
         std::cout << "Error opening static array _static_array__dynamic_array_spikegeneratorgroup__timebins." << endl;
@@ -311,7 +311,7 @@ void _load_arrays()
     f_static_array__dynamic_array_spikegeneratorgroup_neuron_index.open("static_arrays/_static_array__dynamic_array_spikegeneratorgroup_neuron_index", ios::in | ios::binary);
     if(f_static_array__dynamic_array_spikegeneratorgroup_neuron_index.is_open())
     {
-        f_static_array__dynamic_array_spikegeneratorgroup_neuron_index.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup_neuron_index), 744174*sizeof(double));
+        f_static_array__dynamic_array_spikegeneratorgroup_neuron_index.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup_neuron_index), 155437*sizeof(double));
     } else
     {
         std::cout << "Error opening static array _static_array__dynamic_array_spikegeneratorgroup_neuron_index." << endl;
@@ -320,7 +320,7 @@ void _load_arrays()
     f_static_array__dynamic_array_spikegeneratorgroup_spike_number.open("static_arrays/_static_array__dynamic_array_spikegeneratorgroup_spike_number", ios::in | ios::binary);
     if(f_static_array__dynamic_array_spikegeneratorgroup_spike_number.is_open())
     {
-        f_static_array__dynamic_array_spikegeneratorgroup_spike_number.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup_spike_number), 744174*sizeof(int64_t));
+        f_static_array__dynamic_array_spikegeneratorgroup_spike_number.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup_spike_number), 155437*sizeof(int64_t));
     } else
     {
         std::cout << "Error opening static array _static_array__dynamic_array_spikegeneratorgroup_spike_number." << endl;
@@ -329,7 +329,7 @@ void _load_arrays()
     f_static_array__dynamic_array_spikegeneratorgroup_spike_time.open("static_arrays/_static_array__dynamic_array_spikegeneratorgroup_spike_time", ios::in | ios::binary);
     if(f_static_array__dynamic_array_spikegeneratorgroup_spike_time.is_open())
     {
-        f_static_array__dynamic_array_spikegeneratorgroup_spike_time.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup_spike_time), 744174*sizeof(double));
+        f_static_array__dynamic_array_spikegeneratorgroup_spike_time.read(reinterpret_cast<char*>(_static_array__dynamic_array_spikegeneratorgroup_spike_time), 155437*sizeof(double));
     } else
     {
         std::cout << "Error opening static array _static_array__dynamic_array_spikegeneratorgroup_spike_time." << endl;

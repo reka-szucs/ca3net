@@ -197,7 +197,7 @@ def run_simulation(wmx_PC_E, STDP_mode, cue, save, seed, verbose=True):
     StateM_BC = StateMonitor(BCs, "vm", record=[nBCs/2], dt=0.1*ms)
 
     if verbose:
-        run(10000*ms, report="text")
+        run(10000*ms, report="text")  #10000*ms
     else:
         run(10000*ms)
 

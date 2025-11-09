@@ -12,7 +12,7 @@ import random as pyrandom
 from brian2 import *
 set_device("cpp_standalone")  # speed up the simulation with generated C++ code
 import matplotlib.pyplot as plt
-from helper import load_spike_trains, save_wmx
+from helper import load_spike_trains, save_wmx, load_wmx
 from plots import plot_STDP_rule, plot_wmx, plot_wmx_avg, plot_w_distr, save_selected_w, plot_weights
 
 
@@ -60,9 +60,9 @@ def learning(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, w_init):
 
     run(400*second, report="text")
 
-    weightmx = np.zeros((nPCs, nPCs))
-    weightmx[STDP.i[:], STDP.j[:]] = STDP.w[:]
-    return weightmx * 1e9  # *1e9 nS conversion
+#    weightmx = np.zeros((nPCs, nPCs))
+#    weightmx[STDP.i[:], STDP.j[:]] = STDP.w[:]
+#    return weightmx * 1e9  # *1e9 nS conversion
 
 
 if __name__ == "__main__":
@@ -75,8 +75,10 @@ if __name__ == "__main__":
 
     place_cell_ratio = 0.5
     linear = True
-    f_in = "spike_trains_%.1f_linear.npz" % place_cell_ratio if linear else "spike_trains_%.1f.npz" % place_cell_ratio
-    f_out = "wmx_%s_%.1f_linear.npz" % (STDP_mode, place_cell_ratio) if linear else "wmx_%s_%.1f.pkl" % (STDP_mode, place_cell_ratio)
+    #f_in = "spike_trains_%.1f_linear.npz" % place_cell_ratio if linear else "spike_trains_%.1f.npz" % place_cell_ratio
+    f_in = "spw_spiketrains_out.npz"
+    f_in_wmx = "wmx_%s_%.1f_linear.npz" % (STDP_mode, place_cell_ratio) if linear else "wmx_%s_%.1f.pkl" % (STDP_mode, place_cell_ratio)
+    f_out = "wmx_%s_%.1f_linear_swr.npz" % (STDP_mode, place_cell_ratio) if linear else "wmx_%s_%.1f_swr.pkl" % (STDP_mode, place_cell_ratio)
     #f_in = "intermediate_spike_trains_%.1f_linear.npz" % place_cell_ratio if linear else "intermediate_spike_trains_%.1f.npz" % place_cell_ratio
     #f_out = "intermediate_wmx_%s_%.1f_linear.npz" % (STDP_mode, place_cell_ratio) if linear else "intermediate_wmx_%s_%.1f.pkl" % (STDP_mode, place_cell_ratio)
 
@@ -97,9 +99,19 @@ if __name__ == "__main__":
 
     spiking_neurons, spike_times = load_spike_trains(os.path.join(base_path, "files", f_in))
 
-    weightmx = learning(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, w_init)
-    weightmx *= scale_factor  # quick and dirty additional scaling! (in an ideal world the STDP parameters should be changed to include this scaling...)
-    save_wmx(weightmx, os.path.join(base_path, "files", f_out))
+#    weightmx = learning(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, w_init)
+#    weightmx *= scale_factor  # quick and dirty additional scaling! (in an ideal world the STDP parameters should be changed to include this scaling...)
+    
+#    print("Learned weight matrix shape old:", weightmx.shape)
+   
+#    save_wmx(weightmx, os.path.join(base_path, "files", f_out))
+
+    spiking_neurons, spike_times = load_spike_trains(os.path.join(base_path, "files", f_in))
+    npzf_name = os.path.join(base_path, "files", f_in_wmx)
+    weightmx = load_wmx(npzf_name) / (scale_factor * 1e9) 
+
+    print("Loaded weight matrix shape new:", weightmx.shape)
+    print("File name:", f_out[:-4])
 
     plot_wmx(weightmx, save_name=f_out[:-4])
     plot_wmx_avg(weightmx, n_pops=100, save_name="%s_avg" % f_out[:-4])

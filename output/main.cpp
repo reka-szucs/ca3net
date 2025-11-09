@@ -115,7 +115,7 @@ int main(int argc, char **argv)
         _array_defaultclock_dt[0] = 0.0001;
         _array_defaultclock_dt[0] = 0.0001;
         _array_defaultclock_dt[0] = 0.0001;
-        _dynamic_array_spikegeneratorgroup_spike_number.resize(744174);
+        _dynamic_array_spikegeneratorgroup_spike_number.resize(155437);
         
                         
                         for(int i=0; i<_dynamic_array_spikegeneratorgroup_spike_number.size(); i++)
@@ -123,7 +123,7 @@ int main(int argc, char **argv)
                             _dynamic_array_spikegeneratorgroup_spike_number[i] = _static_array__dynamic_array_spikegeneratorgroup_spike_number[i];
                         }
                         
-        _dynamic_array_spikegeneratorgroup_neuron_index.resize(744174);
+        _dynamic_array_spikegeneratorgroup_neuron_index.resize(155437);
         
                         
                         for(int i=0; i<_dynamic_array_spikegeneratorgroup_neuron_index.size(); i++)
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
                             _dynamic_array_spikegeneratorgroup_neuron_index[i] = _static_array__dynamic_array_spikegeneratorgroup_neuron_index[i];
                         }
                         
-        _dynamic_array_spikegeneratorgroup_spike_time.resize(744174);
+        _dynamic_array_spikegeneratorgroup_spike_time.resize(155437);
         
                         
                         for(int i=0; i<_dynamic_array_spikegeneratorgroup_spike_time.size(); i++)
@@ -139,7 +139,7 @@ int main(int argc, char **argv)
                             _dynamic_array_spikegeneratorgroup_spike_time[i] = _static_array__dynamic_array_spikegeneratorgroup_spike_time[i];
                         }
                         
-        _dynamic_array_spikegeneratorgroup__timebins.resize(744174);
+        _dynamic_array_spikegeneratorgroup__timebins.resize(155437);
         _array_spikegeneratorgroup__lastindex[0] = 0;
         _array_spikegeneratorgroup_period[0] = 0.0;
         _run_synapses_synapses_create_generator_codeobject();
