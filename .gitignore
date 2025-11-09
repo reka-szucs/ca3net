@@ -11,4 +11,4 @@ scripts/output/
 scripts/var/
 scripts/optimization/Mishra_2016/
 scripts/optimization/checkpoints/
-output/**/*
+output/
