@@ -428,7 +428,7 @@ if __name__ == "__main__":
     save = False
     verbose = True
 
-    f_in = "wmx_%s_%.1f_linear.npz" % (STDP_mode, place_cell_ratio) if linear else "wmx_%s_%.1f.pkl" % (STDP_mode, place_cell_ratio)
+    f_in = "wmx_%s_%.1f_linear_swr.npz" % (STDP_mode, place_cell_ratio) if linear else "wmx_%s_%.1f.pkl" % (STDP_mode, place_cell_ratio)
     PF_pklf_name = os.path.join(base_path, "files", "PFstarts_%s_linear.pkl" % place_cell_ratio) if linear else None
     dir_name = os.path.join(base_path, "figures", "%.2f_replay_det_%s_%.1f" % (1, STDP_mode, place_cell_ratio)) if linear else None
 
@@ -437,7 +437,7 @@ if __name__ == "__main__":
         wmx_PC_E, STDP_mode, cue=cue, save=save, seed=seed, verbose=verbose
     )
 
-    save_spw_spike_trains_npz(SM_PC, filename = "spw_spiketrains_out.npz", n_neurons=nPCs)
+#    save_spw_spike_trains_npz(SM_PC, filename = "spw_spiketrains_out.npz", n_neurons=nPCs)
     
     _ = analyse_results(
         SM_PC,

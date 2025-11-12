@@ -60,9 +60,47 @@ def learning(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, w_init):
 
     run(400*second, report="text")
 
-#    weightmx = np.zeros((nPCs, nPCs))
-#    weightmx[STDP.i[:], STDP.j[:]] = STDP.w[:]
-#    return weightmx * 1e9  # *1e9 nS conversion
+    weightmx = np.zeros((nPCs, nPCs))
+    weightmx[STDP.i[:], STDP.j[:]] = STDP.w[:]
+    return weightmx * 1e9  # *1e9 nS conversion
+
+def learning2(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, weightmx_in):
+    """
+    Learns the second environment (very similar to `stdp.py/learning()` but initializes with a previous weight matrix)
+    :param spiking_neurons, spike_times, taup, taum, Ap, Am, wmax: see `stdp.py/learning()`
+    :param intermediate_wmx: weight matrix of the first environment
+    :return: weightmx: learned weight matrix (represents 2 different environments)
+    """
+
+    np.random.seed(12345)
+    pyrandom.seed(12345)
+    #plot_STDP_rule(taup/ms, taum/ms, Ap/1e-9, Am/1e-9, "STDP_rule")
+
+    PC = SpikeGeneratorGroup(nPCs, spiking_neurons, spike_times*second)
+    STDP = Synapses(PC, PC,
+            """
+            w : 1
+            dA_presyn/dt = -A_presyn/taup : 1 (event-driven)
+            dA_postsyn/dt = -A_postsyn/taum : 1 (event-driven)
+            """,
+            on_pre="""
+            A_presyn += Ap
+            w = clip(w + A_postsyn, 0, wmax)
+            """,
+            on_post="""
+            A_postsyn += Am
+            w = clip(w + A_presyn, 0, wmax)
+            """)
+    # initialize weights from the intermediate weight matrix
+    STDP.connect(i=weightmx_in.row, j=weightmx_in.col)
+    STDP.w = weightmx_in.data
+
+    run(400*second, report="text")
+
+    weightmx = np.zeros((nPCs, nPCs))
+    weightmx[STDP.i[:], STDP.j[:]] = STDP.w[:]
+
+    return weightmx * 1e9  # *1e9 nS conversion
 
 
 if __name__ == "__main__":
@@ -94,24 +132,23 @@ if __name__ == "__main__":
         Ap = Am = 4e-3
         wmax = 2e-8  # S
         scale_factor = 0.62
-    w_init = 1e-10  # S
+#    w_init = 1e-10  # S
     Ap *= wmax; Am *= wmax  # needed to reproduce Brian1 results
 
     spiking_neurons, spike_times = load_spike_trains(os.path.join(base_path, "files", f_in))
-
-#    weightmx = learning(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, w_init)
-#    weightmx *= scale_factor  # quick and dirty additional scaling! (in an ideal world the STDP parameters should be changed to include this scaling...)
-    
-#    print("Learned weight matrix shape old:", weightmx.shape)
-   
-#    save_wmx(weightmx, os.path.join(base_path, "files", f_out))
-
-    spiking_neurons, spike_times = load_spike_trains(os.path.join(base_path, "files", f_in))
     npzf_name = os.path.join(base_path, "files", f_in_wmx)
-    weightmx = load_wmx(npzf_name) / (scale_factor * 1e9) 
+    weightmx_in = load_wmx(npzf_name) / (scale_factor * 1e9) 
 
-    print("Loaded weight matrix shape new:", weightmx.shape)
-    print("File name:", f_out[:-4])
+#    weightmx_in = weightmx_in.toarray()   # convert to dense array for Brian2
+  
+#    print("Learned weight matrix shape old:", weightmx.shape)
+#    print("Loaded weight matrix shape new:", weightmx.shape)
+#    print("File name:", f_out[:-4])
+
+    weightmx = learning2(spiking_neurons, spike_times, taup, taum, Ap, Am, wmax, weightmx_in)
+    weightmx *= scale_factor
+    save_wmx(weightmx, os.path.join(base_path, "files", f_out))
+
 
     plot_wmx(weightmx, save_name=f_out[:-4])
     plot_wmx_avg(weightmx, n_pops=100, save_name="%s_avg" % f_out[:-4])
